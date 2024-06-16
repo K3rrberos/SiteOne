@@ -1,3 +1,7 @@
+:root {
+  --checked-count: 1;
+}
+
 .checkbox-container {
   position: absolute;
   left: 45%;
@@ -6,6 +10,13 @@
 
 .checkbox-container div {
   margin-bottom: 20px;
+}
+
+.header {
+  position: absolute;
+  left: 39%;
+  top: 25%;
+  font-weight: bold;
 }
 
 .extra-sql-checkbox {
@@ -29,7 +40,7 @@
 .chevron-container {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
   position: absolute;
   left: 0;
@@ -37,9 +48,11 @@
 }
 
 .chevron {
-  flex: 0 1 auto;
   height: 50px;
+  width: var(--chevron-width-percent);
+  flex: 0 1 auto;
   clip-path: polygon(100% 0%, 98% 50%, 100% 100%, 2% 100%, 0% 50%, 2% 0);
+  position: relative;
 }
 
 .color-1 {
@@ -64,14 +77,16 @@
 
 @media (max-width: 768px) {
   .chevron-container {
-    height: 100%;
+    width: 50px;
     top: 0;
-    left:-110px;
+    left: 50px;
+    height: 100%;
     flex-direction: column;
   }
 
   .chevron {
-    height: 100px;
-    transform: rotate(-90deg);
+    height: 100vh;
+    width: 100%;
+    clip-path: polygon(50% 2%, 100% 0, 100% 98%, 50% 100%, 0 98%, 0 0);
   }
 }

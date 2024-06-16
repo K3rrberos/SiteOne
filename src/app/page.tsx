@@ -1,7 +1,6 @@
 "use client";
 import "./globals.css";
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-
+import React, { useState, ChangeEvent, FormEvent} from 'react';
 
   const App = () => {
     const [showSQLExtras, setShowSQLExtras] = useState(false);
@@ -19,7 +18,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
       const checkboxes = document.querySelectorAll('input[type="checkbox"]');
       const isAnyChecked = Array.from(checkboxes).some(checkbox => (checkbox as HTMLInputElement).checked);
       if (!isAnyChecked) {
-        setErrorMessage('At least one checkbox must be checked');
+        setErrorMessage('At least one programming language must be selected');
       } else {
         setErrorMessage('');
       }
@@ -44,12 +43,13 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
   
   
     const languages = ['typescript', 'python', 'HTML', 'CSS', 'SQL'];
-  const checkedLanguages = languages.filter(lang => checkedBoxes.includes(lang));
-  const chevronWidthPercent =
-    checkedLanguages.length > 0 ? 100 / checkedLanguages.length : 0;
+    const checkedLanguages = languages.filter(lang => checkedBoxes.includes(lang));
+    const chevronWidthPercent =
+      checkedLanguages.length > 0 ? 100 / checkedLanguages.length : 0;
     
       return (
         <form onSubmit={handleSubmit}>
+          <span className="header">Select at least one programming language</span>
           <div className="checkbox-container">
             <div>
               <input
@@ -101,11 +101,15 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
           </button>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <div className="chevron-container">
-        {checkedLanguages.map((lang, index) => (
+          {checkedLanguages.map((lang) => (
           <div
             key={lang}
             className={`chevron ${getColorClass(lang)}`}
-            style={{ width: `${chevronWidthPercent}%` }}
+            style={
+              {
+                '--chevron-width-percent': `${chevronWidthPercent}%`,
+              } as React.CSSProperties
+            }
           />
         ))}
       </div>
